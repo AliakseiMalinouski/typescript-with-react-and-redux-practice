@@ -5,6 +5,9 @@ import { ITodo } from './types/data';
 import { TodoList } from './components/TodoList';
 import { useAppSelector, useAppDispatch } from './hooks';
 import { addNewTodo } from './store/todoSlice';
+import { Box } from './components/Box';
+import { Button } from './components/Button';
+import { OneChild } from './components/OneChild';
 
 const App: React.FC = () => {
 
@@ -42,6 +45,13 @@ const App: React.FC = () => {
         <button onClick={handleClick}>Add</button>
       </div>
       <TodoList status={false} list={list}/>
+      <Box>
+        <h2>Test</h2>
+      </Box>
+      <Button>Click</Button>
+      <OneChild>
+        <p>Text</p>
+      </OneChild>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 type Todo = {
     id: number,
@@ -13,6 +13,20 @@ type TodoState = {
 const initialState: TodoState = {
     list: []
 }
+
+export const fetchTotos = createAsyncThunk<Todo[], undefined, {rejectValue: string}>(
+    'todos/fetchTodos',
+    async function(_, {rejectWithValue}) {
+        try {
+            const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+            const data = await response.json();
+            return data;
+        }
+        catch {
+            return rejectWithValue('Error')
+        }
+    }
+)
 
 export const todoSlice = createSlice({
     name: 'todo',
